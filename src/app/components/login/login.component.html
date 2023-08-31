@@ -1,0 +1,12 @@
+<p>login works!</p>
+
+<div>
+    <h3>User login</h3>
+    <form>
+        Username : <input type="text" [(ngModel)]="user.name" name = "userName">
+        Password : <input type="password" [(ngModel)]="user.password" name = "userPassword">
+        <button (click)="userLogin()">
+            Login
+        </button>
+    </form>
+</div>

@@ -1,0 +1,50 @@
+<p>add-product works!</p>
+<div>
+    <h3>
+        add new product
+    </h3>
+ 
+    <div class="alert alert-success alert-dismissible" *ngIf="message" >
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <strong>{{message}}</strong>
+      </div>
+
+      <div class="alert alert-danger alert-dismissible" *ngIf="errorMessage" >
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <strong>{{errorMessage}}</strong>
+      </div>
+
+    <form (ngSubmit)="addProduct()" >
+        <div class="form-group">
+            <label for="id">Id:</label>
+             <input type="number" class="form-control" [(ngModel)]="product.id" name="id" id="id" required>
+        </div>
+            <div class="form-group">
+                <label for="name">Name:</label>
+                 <input type="text" class="form-control" [(ngModel)]="product.name" name="name" id="name" required  #name = "ngModel">
+            </div>
+            <div [hidden]="name.touched && name.valid || name.pristine"  class="alert alert-danger">
+Name is required
+            </div>
+           <div class="form-group">
+            <label for="price" >Price:</label>
+            <input type="number" class="form-control" [(ngModel)]="product.price" name="price" id = "price" required>
+           </div>
+           <div class="form-group">
+            <label for="desc">Description:</label>
+             <input type="text" class="form-control" [(ngModel)]="product.description" name="desc" id = "desc" required>
+           </div>
+       
+            <input type="submit" value="Add Product" class="btn btn-primary" >
+    
+      
+       
+    </form>
+</div>
+
+
+

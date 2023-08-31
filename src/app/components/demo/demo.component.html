@@ -1,0 +1,172 @@
+
+<h1>
+    {{title}}
+    Name : {{person.name}}
+    Age : {{person.age}}
+  </h1>
+  
+  <div >
+    <img [src] = imgSrc height="200" width="250" >
+    <ol>
+      <li>
+        {{country[0]}}
+      </li>
+      <li>
+        {{country[1]}}
+      </li>
+      <li>
+        {{country[2]}}
+      </li>
+    </ol>
+  
+    <form>
+      <select>
+        <option value = "US">{{country[0]}}</option>
+        <option [value] = country[1]>{{country[1]}}</option>
+        <option value = "UK" >{{country[2]}}</option>
+      </select>
+    </form>
+  
+    <div>
+      <h2>Property Binding</h2>
+      <form>
+  
+        <input type = "button" (click)=  "greet()" value="Alert" >&nbsp; &nbsp;
+        <button (click)="greet()">Grreting</button><br><br>
+  
+      Name Input box :   <input type = "text" id = "name" [(ngModel)]="name"  [ngModelOptions]="{standalone: true}"> <br>
+      Another Input box :  <input type = "text" name = "name" [(ngModel)]="name" > <br>
+      Entered name is :   {{name}}
+    </form>
+    </div>
+  
+  
+    <a [href] = url target = "_blank">{{url}}</a>
+  
+   <div *ngIf=!isLoggedIn >
+    <h1>User Login</h1>
+    <form>
+     Name :  <input type = "text" [(ngModel)]= "userLogin.name" name="userName">
+     Password:  <input type = "password" [(ngModel)]= "userLogin.password" name="userPassword">
+    </form>
+   username is :  {{userLogin.name}} 
+   password is : {{userLogin.password}}
+  
+   <button (click) = "submitLogin()">See user detail</button>
+   </div>
+  
+   <div *ngIf=isLoggedIn>
+    <p>Logged in successfully!!</p>
+   </div>
+  
+  
+  
+   <div>
+  
+      <select [(ngModel)]="selectedPolicy" >
+        <option value = "1">{{policy[0]}}</option>
+        <option value = "2">{{policy[1]}}</option>
+        <option value = "3" >{{policy[2]}}</option>
+      </select>
+  
+   </div>
+  
+  
+   <div  [ngSwitch] = "selectedPolicy">
+    <div *ngSwitchCase = "'1'">desc of p1</div>
+   <div *ngSwitchCase = "'2'">desc of p2</div>
+   <div *ngSwitchCase = "'3'">desc of p3</div>
+   </div>
+  
+   <div>
+    <h1>table usinf ngFor with pipe using range</h1>
+    <input type = "number" [(ngModel)]="minP">
+    <input type = "number" [(ngModel)]="maxP">
+      <table>
+          <tr>
+            <th>Id</th>
+            <th>Products</th>
+            <th>Price</th>
+            <th>Description</th>
+           </tr>
+            <tr *ngFor="let product of (products | priceBetween:minP:maxP)">
+              <td>{{product.id}}</td>
+              <td>{{product.name}}</td>
+              <td>{{product.price}}</td>
+              <td>{{product.description}}</td>
+          </tr>
+        </table>
+   </div>
+   
+   <!-- <div *ngIf="products.length <= 0">
+    <h3>No products available</h3>
+   </div> -->
+  
+   <ng-container>
+  
+    <h5>
+      {{title1 | uppercase}}
+    </h5>
+    <h5>
+      {{title1 | lowercase}}
+    </h5>
+    <h5>
+      {{title1 | titlecase}}
+    </h5>
+   </ng-container>
+  <h1>default pipes</h1>
+   <ng-container>
+    {{today | date}}<br>
+    {{today | date : 'medium'}}<br>
+    {{today | date : 'shortTime'}}<br>
+    {{today | date : 'mm:ss'}}<br>
+   </ng-container>
+  
+  <h1>custom pipes</h1>
+  {{55| power : 10}} <br>
+  
+  <p>{{ "  i     h   n   d  i  a  " | removeSpace }}</p>
+  
+  <div>
+    <h1>table usinf ngFor</h1>
+    <input type = "text" [(ngModel)]="nameString">
+   
+      <table>
+          <tr>
+            <th>Id</th>
+            <th>Products</th>
+            <th>Price</th>sB
+            <th>Description</th>
+           </tr>
+            <tr *ngFor="let product of (products | searchByName : nameString  )">
+              <td>{{product.id}}</td>
+              <td>{{product.name}}</td>
+              <td>{{product.price}}</td>
+              <td>{{product.description}}</td>
+          </tr>
+        </table>
+   </div>
+  
+   <div>
+    <h1>table using sorted pipes</h1>
+    <input type = "text" [(ngModel)]="nameString">
+   
+      <table>
+          <tr>
+            <th (click)= "changeSortBy('id')" >Id</th>
+            <th (click)= "changeSortBy('name')">Products</th>
+            <th (click)= "changeSortBy('price')">Price</th>sB
+            <th>Description</th>
+           </tr>
+            <tr *ngFor="let product of (products  | searchByName : nameString | sortProducts : columnName )">
+              <td>{{product.id}}</td>
+              <td>{{product.name}}</td>
+              <td>{{product.price}}</td>
+              <td>{{product.description}}</td>
+          </tr>
+        </table>
+   </div>
+  
+  </div>
+  
+  

@@ -1,0 +1,43 @@
+<ng-container *ngIf=!isUpdate>
+    <p>display-all-product works!</p>
+<div *ngIf="products.length > 0">
+    <h3>Display all Products: </h3>
+    <table class = "table">
+        <tr>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Description</th>
+        </tr>
+        <tr *ngFor="let product of products ">
+            
+            <td>{{product.name}}</td>
+            <td>{{product.price}}</td>
+            <td>{{product.description}}</td>
+            <td><button (click) = "deleteProductById(product.id)" class="btn btn-outline-danger">Delete</button></td>
+            <td><button (click) = "updateProduct(product)" class="btn btn-outline-primary">Update</button></td>
+        </tr>
+    </table>
+</div>
+
+<div *ngIf="products.length == 0">
+    <h3>nothing to Display here ❌🚫❌ </h3>
+</div>
+</ng-container>
+
+<div *ngIf = isUpdate>
+<h3>Update Product</h3>
+<form (ngSubmit)="updateProductSubmit(updatedProduct)">
+    Id: <input type="number" [(ngModel)]="updatedProduct.id" name="producId" required>
+    Name: <input type="text" [(ngModel)]="updatedProduct.name" name="productName" required>
+    Price: <input type="number" [(ngModel)]="updatedProduct.price" name="productPrice" required>
+    Description: <input type="text" [(ngModel)]="updatedProduct.description" name="productDescription" required>
+    <input type="submit" value="Update Product">
+
+</form>s
+</div>
+
+<div>
+
+</div>
+
+
